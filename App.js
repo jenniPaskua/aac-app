@@ -1,21 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import Realm from "realm";
+import AppLoading from "expo-app-loading";
+import Root from "./navigation/Root";
+
+const WordSchema = {
+  name: "Word",
+  properties: {
+    _id: "int",
+    emotion: "string",
+    message: "string",
+  },
+  primaryKey: "_id",
+};
 
 export default function App() {
+  const [ready, setReady] = useState(false);
+  const [realm, setRealm] = useState(null);
+  // const startLoading = async () => {
+  //   const connection = await Realm.open({
+  //     path: "aacDB",
+  //     schema: [WordSchema],
+  //   });
+  //   setRealm(connection);
+  // };
+  const onFinish = () => setReady(true);
+  // if (!ready) {
+  // return (
+  // <AppLoading
+  //   onError={console.error}
+  //   startAsync={startLoading}
+  //   onFinish={onFinish}
+  // />
+  // );
+  // }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Root />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
