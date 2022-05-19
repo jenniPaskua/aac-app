@@ -3,19 +3,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import Realm from "realm";
 import AppLoading from "expo-app-loading";
 import Root from "./navigation/Root";
-import { View } from "react-native";
+import { DBContext } from "./context";
 
 const WordSchema = {
   name: "Word",
   properties: {
     _id: "int",
-    emotion: "string",
-    message: "string",
+    title: "string",
+    image: "string",
   },
   primaryKey: "_id",
 };
-
-const Context = React.createContext();
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -38,10 +36,10 @@ export default function App() {
     );
   }
   return (
-    <Context.Provider value={realm}>
+    <DBContext.Provider value={realm}>
       <NavigationContainer>
         <Root />
       </NavigationContainer>
-    </Context.Provider>
+    </DBContext.Provider>
   );
 }
