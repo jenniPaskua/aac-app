@@ -5,6 +5,8 @@ import styled from "styled-components/native";
 import Card from "../components/Card";
 import { cardData } from "../cardData";
 import { Ionicons } from "@expo/vector-icons";
+import tts from "react-native-tts";
+import { useEffect } from "react";
 
 const Container = styled.View`
   background-color: teal;
@@ -65,11 +67,16 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
 
   const selected = (selected) => {
     setWords((prev) => [...prev, selected]);
+    tts.speak(selected.title);
   };
 
   const onPress = (id) => {
+    console.log(id);
     setWords(words.filter((word) => word.id !== id));
   };
+  useEffect(() => {
+    tts.setDefaultLanguage("ko-KR");
+  }, []);
 
   return (
     <Container>

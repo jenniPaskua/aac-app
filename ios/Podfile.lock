@@ -318,6 +318,8 @@ PODS:
   - RNScreens (3.13.1):
     - React-Core
     - React-RCTImage
+  - TextToSpeech (4.1.0):
+    - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -365,6 +367,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RealmJS (from `../node_modules/realm`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - TextToSpeech (from `../node_modules/react-native-tts`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -457,6 +460,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/realm"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  TextToSpeech:
+    :path: "../node_modules/react-native-tts"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -505,6 +510,7 @@ SPEC CHECKSUMS:
   ReactCommon: 095366164a276d91ea704ce53cb03825c487a3f2
   RealmJS: 1974bf10182364d33d7b2beb3442344806888995
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
+  TextToSpeech: b3aa777ff5585705f179c0a2436bfd0926d1716e
   Yoga: 99652481fcd320aefa4a7ef90095b95acd181952
 
 PODFILE CHECKSUM: ae4c298bc1f377dcbdeeff39b53c72cea34592a2
