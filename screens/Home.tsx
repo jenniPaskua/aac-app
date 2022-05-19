@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import Card from "../components/Card";
 
 const Container = styled.View`
-  background-color: tomato;
+  background-color: teal;
   flex: 1;
 `;
 
@@ -14,16 +14,30 @@ const List = styled.FlatList`
   width: 100%;
 `;
 
+const Header = styled.View`
+  background-color: tomato;
+  height: 70px;
+`;
+
+const HeaderRight = styled.TouchableOpacity`
+  background-color: white;
+  width: 20%;
+  align-items: flex-end;
+`;
+
 const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   navigation: { navigate },
 }) => {
   const [cardData, setCardData] = useState([
-    { id: "1", name: "1.name", symbol: "1.symbol" },
-    { id: "2", name: "2.name", symbol: "2.symbol" },
-    { id: "3", name: "3.name", symbol: "3.symbol" },
-    { id: "4", name: "4.name", symbol: "4.symbol" },
-    { id: "5", name: "5.name", symbol: "5.symbol" },
-    { id: "6", name: "6.name", symbol: "6.symbol" },
+    { id: "1", title: "멘붕이에요", image: "🤯" },
+    { id: "2", title: "슬퍼요", image: "🥲" },
+    { id: "3", title: "화가나요", image: "🤬" },
+    { id: "4", title: "기뻐요", image: "🤗" },
+    { id: "5", title: "사랑스러워요", image: "🥰" },
+    { id: "6", title: "기분좋아요", image: "😊" },
+    { id: "7", title: "밥", image: "🍚" },
+    { id: "8", title: "주세요", image: "🤲" },
+    { id: "9", title: "화장실", image: "🚽" },
   ]);
   return (
     <Container>
@@ -31,12 +45,41 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
         data={cardData}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         numColumns={3}
+        ListHeaderComponent={
+          <>
+            <View
+              style={{
+                height: 50,
+                backgroundColor: "tomato",
+                flexDirection: "row",
+              }}
+            >
+              <Text
+                style={{
+                  width: "80%",
+                }}
+              >
+                {"so.. here is what you say"}
+              </Text>
+              <TouchableOpacity
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "20%",
+                  backgroundColor: "white",
+                }}
+              >
+                <Text style={{ fontSize: 20 }}>✨</Text>
+              </TouchableOpacity>
+            </View>
+          </>
+        }
         columnWrapperStyle={{
           justifyContent: "space-between",
         }}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <Card index={index} symbol={item.symbol} />
+          <Card index={index} title={item.title} image={item.image} />
         )}
       />
     </Container>

@@ -8,13 +8,18 @@ const Wrapper = styled(Animated.createAnimatedComponent(View))`
   border-radius: 5px;
   align-items: center;
 `;
-const CardName = styled.Text`
+const CardTitle = styled.Text`
   color: white;
   font-weight: 600;
   font-size: 16px;
 `;
 
-const Card = ({ symbol, index }) => {
+const CardImage = styled.Text`
+  font-weight: 600;
+  font-size: 40px;
+`;
+
+const Card = ({ image, title, index }) => {
   const opacity = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.spring(opacity, {
@@ -29,7 +34,8 @@ const Card = ({ symbol, index }) => {
   });
   return (
     <Wrapper style={{ flex: 0.31, opacity, transform: [{ scale }] }}>
-      <CardName>{symbol}</CardName>
+      <CardImage>{image}</CardImage>
+      <CardTitle>{title}</CardTitle>
     </Wrapper>
   );
 };
