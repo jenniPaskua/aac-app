@@ -82,7 +82,7 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
       <STList
         data={cardData}
         horizontal={true}
-        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
         keyExtractor={(item) => item._id + ""}
         renderItem={({ item, index }) => (
           <STContainer>

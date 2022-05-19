@@ -14,7 +14,7 @@ const Tabs = () => {
         name='Home'
         component={Home}
         options={{
-          title: "홈",
+          title: "My New AAC",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name={"home"} color={color} size={size} />
           ),
