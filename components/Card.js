@@ -21,7 +21,7 @@ const CardImage = styled.Text`
   font-size: 40px;
 `;
 
-const Card = ({ image, title, index }) => {
+const Card = ({ item, selected, index }) => {
   const realm = useDB();
   const opacity = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -35,20 +35,12 @@ const Card = ({ image, title, index }) => {
     inputRange: [0, 1],
     outputRange: [0.7, 1],
   });
-  const onPress = (image) => {
-    realm.write(() => {
-      realm.create("Word", {
-        _id: Date.now(),
-        title: `title${image}`,
-        image: image,
-      });
-    });
-  };
+
   return (
-    <TouchableOpacity style={{ flex: 0.31 }} onPress={() => onPress(image)}>
+    <TouchableOpacity style={{ flex: 0.31 }} onPress={() => selected(item)}>
       <Wrapper style={{ flex: 0.31, opacity, transform: [{ scale }] }}>
-        <CardImage>{image}</CardImage>
-        <CardTitle>{title}</CardTitle>
+        <CardImage>{item.image}</CardImage>
+        <CardTitle>{item.title}</CardTitle>
       </Wrapper>
     </TouchableOpacity>
   );
