@@ -4,7 +4,7 @@ import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import Card from "../components/Card";
 import { cardData } from "../cardData";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 import tts from "react-native-tts";
 import { useEffect } from "react";
 
@@ -26,11 +26,11 @@ const STList = styled.FlatList`
 `;
 
 const STContainer = styled.View`
-  width: 70;
-  height: 70;
+  width: 70px;
+  height: 70px;
   border-color: grey;
-  border-width: 1;
-  border-radius: 8;
+  border-width: 1px;
+  border-radius: 8px;
   justify-content: center;
   align-items: center;
 `;
@@ -79,6 +79,20 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
     tts.setDefaultLanguage("ko-KR");
   }, []);
 
+  const onPressSound = () => {
+    // IOS
+    console.log(words.map((word) => word.title).toString());
+    tts.speak(words.map((word) => word.title).toString());
+    // Android
+    // tts.speak("Hello, world!", {
+    //   androidParams: {
+    //     KEY_PARAM_PAN: -1,
+    //     KEY_PARAM_VOLUME: 0.5,
+    //     KEY_PARAM_STREAM: "STREAM_MUSIC",
+    //   },
+    // });
+  };
+
   return (
     <Container>
       <STList
@@ -98,6 +112,30 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
           </>
         )}
       />
+      <View
+        style={{
+          flexDirection: "row-reverse",
+          flex: 1,
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            marginVertical: 10,
+            marginHorizontal: 10,
+            width: "20%",
+            height: "100%",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            borderWidth: 1,
+            borderColor: "white",
+            borderRadius: 10,
+          }}
+          onPress={onPressSound}
+        >
+          <AntDesign name='sound' size={40} color='white' />
+        </TouchableOpacity>
+      </View>
       <List
         data={cardData}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
