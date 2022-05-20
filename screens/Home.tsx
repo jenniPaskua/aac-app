@@ -71,7 +71,6 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   };
 
   const onPress = (id) => {
-    console.log(id);
     setWords(words.filter((word) => word.id !== id));
   };
   useEffect(() => {
