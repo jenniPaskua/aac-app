@@ -65,13 +65,15 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
 }) => {
   const [words, setWords] = useState([]);
 
-  const selected = (selected) => {
-    setWords((prev) => [...prev, selected]);
-    tts.speak(selected.title);
+  const add = (item) => {
+    setWords([
+      ...words,
+      { id: Math.random().toString(), title: item.title, image: item.image },
+    ]);
   };
 
-  const onPress = (id) => {
-    setWords(words.filter((word) => word.id !== id));
+  const onRemove = (id) => {
+    setWords(words.filter((w) => w.id !== id));
   };
   useEffect(() => {
     tts.setDefaultLanguage("ko-KR");
@@ -83,14 +85,14 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
         data={words}
         horizontal={true}
         ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
-        keyExtractor={(item) => item.id + ""}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <>
             <STContainer>
               <STImage>{item.image}</STImage>
               <STTitle>{item.title}</STTitle>
             </STContainer>
-            <DelBtn onPress={() => onPress(item.id)}>
+            <DelBtn onPress={() => onRemove(item.id)}>
               <Ionicons name='close' color='grey' size={15} />
             </DelBtn>
           </>
@@ -105,7 +107,7 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
         }}
         keyExtractor={(item) => item.id + ""}
         renderItem={({ item, index }) => (
-          <Card item={item} selected={selected} index={index} />
+          <Card item={item} selected={() => add(item)} index={index} />
         )}
       />
     </Container>
